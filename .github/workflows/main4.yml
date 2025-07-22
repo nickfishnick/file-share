@@ -32,6 +32,11 @@ jobs:
       - name: Build APK
         run: |
           buildozer android debug
+            - name: Install Android SDK Build-tools for AIDL
+        run: |
+          yes | $HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+          $HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;34.0.0" "platform-tools" "platforms;android-34"
+
 
       - name: Upload built APK
         uses: actions/upload-artifact@v4
